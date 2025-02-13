@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import React from 'react';
-import '@/styles/button.css';
 
 const Button = ({ text, href, onClick }) => {
   return (
