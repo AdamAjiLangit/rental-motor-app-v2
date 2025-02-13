@@ -1,0 +1,28 @@
+.main .header {
+    display: flex;
+    gap: 15px;
+    padding: 40px;
+    height: 30px;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
+
+.main .header a {
+    text-decoration: none;
+    color: black;
+}
+
+.main .header a:hover {
+    text-decoration: underline;
+}
+
+.main .page {
+    padding: 40px;
+    min-height: calc(100vh - 80px);
+}
+
+.main .body {
+    display: flex;
+    gap: 40px;
+}
