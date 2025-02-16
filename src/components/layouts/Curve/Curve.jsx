@@ -8,6 +8,7 @@ const routes = {
     '/about': 'About',
     '/contact': 'Contact',
     '/test': 'Test',
+    '/catalog': 'Catalog',
 };
 
 const anim = (variants) => ({
@@ -73,7 +74,7 @@ export default function Curve({ children, backgroundColor }) {
 
 const SVG = ({ height, width }) => {
     const initialPath = `
-        M0 300 
+        M0 300
         Q${width / 2} 0 ${width} 300
         L${width} ${height + 300}
         Q${width / 2} ${height + 600} 0 ${height + 300}

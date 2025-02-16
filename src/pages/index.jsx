@@ -1,32 +1,24 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import dynamic from "next/dynamic";
-import Curve from "@/components/layouts/Curve/Curve";
 import { HeroUIProvider } from "@heroui/react";
 import { ReactLenis } from "lenis/react";
-import useAppStore from "@/utils/store";
+import Curve from "@/components/layouts/Curve/Curve";
+import Loading from "../components/loading/loading";
 
-const HomeComponent = dynamic(() => import("@/components/pages/Home/HomeComponent"));
-const AboutUs = dynamic(() => import("@/components/pages/Home/AboutUs"));
-const Preloader = dynamic(() => import("@/components/preloader"));
+const HomeComponent = dynamic(() => import("@/components/pages/Home/Parts/HomeComponent"), { ssr: false });
+const AboutUs = dynamic(() => import("@/components/pages/Home/Parts/AboutUs"), { ssr: false });
+const ListMotor = dynamic(() => import("@/components/pages/Home/Parts/ListMotor"), { ssr: false });
 
 export default function Home() {
-  const { isLoaded, setIsLoaded } = useAppStore();
-
-  useEffect(() => {
-    if (!isLoaded) {
-      setIsLoaded(true);
-    }
-  }, [isLoaded]);
-
   return (
     <HeroUIProvider>
       <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
         <Curve>
-          <Preloader />
           <HomeComponent />
           <AboutUs />
+          <ListMotor />
         </Curve>
       </ReactLenis>
     </HeroUIProvider>
