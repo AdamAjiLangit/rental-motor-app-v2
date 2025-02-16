@@ -55,12 +55,33 @@
   background-clip: content-box;
 }
 
-body {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
   scroll-behavior: smooth;
+}
+
+body {
   font-family: 'PoppinsRegular', sans-serif;
+  background: #F2EFE7;
+  overflow-y: scroll;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    overflow-y: hidden;
+  }
 }
 
 .home {
+  background: #F2EFE7;
+}
+
+/* .home {
   width: 100%;
   height: 100%;
   background: lightsalmon;
@@ -79,9 +100,9 @@ body {
     radial-gradient(circle, transparent 10%, #ff4d30 20%);
   background-size: 30px 30px;
   animation: moveBackground 8s linear infinite;
-}
+} */
 
-@keyframes moveBackground {
+/* @keyframes moveBackground {
   0% {
     transform: translate(0, 0);
   }
@@ -89,19 +110,7 @@ body {
   100% {
     transform: translate(20%, 20%);
   }
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+} */
 
 /* Custom CSS */
 
@@ -205,8 +214,6 @@ body {
 
 .cta span {
   padding-bottom: 3px;
-  letter-spacing: 2px;
-  font-size: 18px;
 }
 
 .cta svg {
@@ -224,7 +231,6 @@ body {
 
 .hover-underline-animation {
   position: relative;
-  color: #ff4d30;
   padding-bottom: 20px;
 }
 
@@ -236,7 +242,6 @@ body {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #ff4d30;
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
@@ -244,4 +249,174 @@ body {
 .cta:hover .hover-underline-animation:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+/* loading */
+
+.loader {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.truckWrapper {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-end;
+  overflow-x: hidden;
+}
+
+/* truck upper body */
+.truckBody {
+  width: 130px;
+  height: fit-content;
+  margin-bottom: 6px;
+  animation: motion 1s linear infinite;
+}
+
+/* truck suspension animation*/
+@keyframes motion {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(3px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* truck's tires */
+.truckTires {
+  width: 130px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px 0px 15px;
+  position: absolute;
+  bottom: 0;
+}
+
+.truckTires svg {
+  width: 24px;
+}
+
+.road {
+  width: 100%;
+  height: 1.5px;
+  background-color: #F9CB43;
+  position: relative;
+  bottom: 0;
+  align-self: flex-end;
+  border-radius: 3px;
+}
+
+.road::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  background-color: #F9CB43;
+  right: -50%;
+  border-radius: 3px;
+  animation: roadAnimation 1.4s linear infinite;
+  border-left: 10px solid white;
+}
+
+.road::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  background-color: #F9CB43;
+  right: -65%;
+  border-radius: 3px;
+  animation: roadAnimation 1.4s linear infinite;
+  border-left: 4px solid white;
+}
+
+.lampPost {
+  position: absolute;
+  bottom: 0;
+  right: -90%;
+  height: 90px;
+  animation: roadAnimation 1.4s linear infinite;
+}
+
+@keyframes roadAnimation {
+  0% {
+    transform: translateX(0px);
+  }
+
+  100% {
+    transform: translateX(-350px);
+  }
+}
+
+/* Cursor Animation */
+
+.custom-cursor {
+  --circle-size: 40px;
+  position: fixed;
+  height: var(--circle-size);
+  width: var(--circle-size);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  top: -20px;
+  left: -20px;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Swiper */
+
+/* styles/swiper.css */
+.swiper-button-prev,
+.swiper-button-next {
+  display: none;
+  /* Disable default swiper buttons */
+}
+
+.custom-swiper-button-prev,
+.custom-swiper-button-next {
+  color: #000;
+  border-radius: 50%;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.custom-swiper-button-prev:hover,
+.custom-swiper-button-next:hover {
+  background-color: #d23500;
+}
+
+.custom-swiper-button-prev {
+  left: 10px;
+}
+
+.custom-swiper-button-next {
+  right: 10px;
+}
+
+.swiper-container {
+  width: 100%;
 }
