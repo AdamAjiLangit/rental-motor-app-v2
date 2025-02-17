@@ -10,6 +10,7 @@ import Loading from "../components/loading/loading";
 const HomeComponent = dynamic(() => import("@/components/pages/Home/Parts/HomeComponent"), { ssr: false });
 const AboutUs = dynamic(() => import("@/components/pages/Home/Parts/AboutUs"), { ssr: false });
 const ListMotor = dynamic(() => import("@/components/pages/Home/Parts/ListMotor"), { ssr: false });
+const Review = dynamic(() => import("@/components/pages/Home/Parts/Review"), { ssr: false });
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
           <HomeComponent />
           <AboutUs />
           <ListMotor />
+          <Review />
         </Curve>
       </ReactLenis>
     </HeroUIProvider>

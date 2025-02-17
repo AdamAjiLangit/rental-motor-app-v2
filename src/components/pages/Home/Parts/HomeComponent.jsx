@@ -10,7 +10,9 @@ import AnimatedCursor from '@/components/ui/animated-cursor';
 const HomeComponent = () => {
     return (
         <div className='min-h-screen home px-5 md:px-20'>
-            <AnimatedCursor />
+            <div className='hidden lg:block'>
+                <AnimatedCursor />
+            </div>
             <div className='text-second flex items-center justify-between h-screen'>
                 <div className='flex flex-col-reverse md:flex-row gap-10 h-[600px] w-screen p-10 rounded-2xl bg-[#F2EFE7] z-10'>
                     <div className='flex flex-col gap-2 justify-center'>

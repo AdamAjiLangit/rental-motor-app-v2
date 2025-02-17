@@ -5,7 +5,7 @@ import SwiperCard from '../Card/SwiperCard'
 
 const ListMotor = () => {
     return (
-        <section id='catalog' className="min-h-screen bg-[#F2EFE7] flex flex-col gap-10 pt-10 items-center justify-center">
+        <section id='catalog' className="min-h-screen bg-[#F2EFE7] flex flex-col gap-10 py-10 items-center justify-center">
             <div className='flex flex-col items-center gap-2'>
                 <h1 className='text-subheader md:text-header font-semibold ml-4'>Motor <span className='text-primary'>Terlaris</span>✨</h1>
                 <AnimatedLink text="Lihat Selengkapnya" href="/catalog" customStyle="text-primary text-button after:bg-primary" />

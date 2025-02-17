@@ -40,7 +40,7 @@ const MotorCard = ({
                 backgroundClip: "padding-box, border-box",
             }}
         >
-            <img src={image} alt={title} className="w-full h-60 object-contain rounded-t-xl" />
+            <img src={image} alt={title} className="w-full h-60 object-contain rounded-t-xl" loading="lazy" />
 
             <CardBody className="text-center p-4">
                 <h2 className="text-xl font-bold text-red-500">{title}</h2>
