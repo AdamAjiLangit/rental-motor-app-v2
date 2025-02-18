@@ -5,12 +5,12 @@ import Layout from "@/components/Layout";
 
 export default function App({ Component, pageProps, router }) {
   return (
-    <Layout>
+    <>
       <div className='main'>
         <AnimatePresence mode='wait'>
           <Component key={router.route} {...pageProps} />
         </AnimatePresence>
       </div>
-    </Layout>
+    </>
   );
 }
