@@ -9,6 +9,7 @@ import NavItems from './Nav/NavItems';
 import Rounded from '@/components/ui/rounded-button';
 import Magnetic from '@/components/ui/magnetic-button';
 import Link from 'next/link';
+import SimpleButton from '@/components/ui/simple-button';
 
 export default function Navbar() {
     const header = useRef(null);
@@ -43,7 +44,7 @@ export default function Navbar() {
 
     return (
         <div>
-            <div ref={header} className="absolute flex z-10 top-0 font-semibold p-[35px] text-primary justify-between w-full box-border items-center" id='header'>
+            <div ref={header} className="absolute flex z-[100] top-0 font-semibold p-[35px] text-primary justify-between w-full box-border items-center" id='header'>
                 <Link href="/">
                     <Magnetic>
                         <div className="flex cursor-pointer absolute left-[9%]">
@@ -57,20 +58,21 @@ export default function Navbar() {
                     </Magnetic>
                 </Link>
                 <div className="md:flex hidden items-center">
-                    {['Home', 'Your Order', 'Catalog', 'About'].map((item) => (
+                    {['Beranda', 'Pesanan', 'Katalog', 'Tentang', 'Kontak'].map((item) => (
                         <Magnetic key={item}>
                             <div
                                 className="relative z-10 p-[15px] cursor-pointer"
                                 onMouseEnter={() => handleHover(`.${item.toLowerCase()}-indicator`)}
                                 onMouseLeave={() => handleLeave(`.${item.toLowerCase()}-indicator`)}
                             >
-                                <Link href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}>{item}</Link>
+                                <Link href={item === 'Beranda' ? '/' : `/${item.toLowerCase()}`}>{item}</Link>
                                 <div
                                     className={`indicator ${item.toLowerCase()}-indicator absolute w-[5px] h-[5px] top-[45px] left-[50%] bg-primary rounded-full transform scale-0 -translate-x-1/2 transition-transform`}
                                 ></div>
                             </div>
                         </Magnetic>
                     ))}
+                    <SimpleButton text="Log in" href="/login" />
                 </div>
                 <div ref={button} className="scale-0 fixed right-0 z-40">
                     <Rounded onClick={() => { setIsActive(!isActive) }} className="relative m-[20px] w-[80px] h-[80px] rounded-full bg-[#1C1D20] cursor-pointer flex items-center justify-center">

@@ -7,24 +7,24 @@ import Curve from './Curve';
 
 const navItems = [
     {
-        title: "Home",
+        title: "Beranda",
         href: "/",
     },
     {
-        title: "Your Order",
-        href: "/order",
+        title: "Pesanan",
+        href: "/pesanan",
     },
     {
-        title: "Catalog",
-        href: "/catalog",
+        title: "Katalog",
+        href: "/katalog",
     },
     {
-        title: "Contact",
-        href: "/contact",
+        title: "Kontak",
+        href: "/kontak",
     },
     {
-        title: "About",
-        href: "/About",
+        title: "Tentang",
+        href: "/tentang",
     },
 ]
 
