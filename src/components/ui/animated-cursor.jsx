@@ -50,7 +50,7 @@ const AnimatedCursor = () => {
         };
     }, []);
 
-    return <div ref={cursorRef} className="custom-cursor" />;
+    return <div ref={cursorRef} className="custom-cursor hidden md:block" />;
 };
 
 export default AnimatedCursor;

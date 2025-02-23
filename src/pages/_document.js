@@ -6,7 +6,7 @@ export default function Document() {
       <Head>
         <link rel="icon" href="/favicon.png" type="image/png" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
         <meta name="robots" content="index, follow" />
         <meta name="author" content="RentalMotorKudus" />
         <meta name="keywords" content="rental motor, sewa motor, motorbike rental, affordable bike rental, Indonesia bike rental" />
