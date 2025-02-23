@@ -8,6 +8,8 @@ const routes = {
     '/tentang': 'Tentang',
     '/kontak': 'Kontak',
     '/katalog': 'Katalog',
+    '/login': 'Login',
+    '/register': 'Register',
 };
 
 const anim = (variants) => ({
