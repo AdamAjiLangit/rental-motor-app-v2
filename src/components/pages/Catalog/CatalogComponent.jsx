@@ -5,6 +5,7 @@ import SwiperCard from '../Home/Card/SwiperCard';
 import AnimatedCircleLink from '@/components/ui/animated-circle';
 import { IoMdArrowDown } from 'react-icons/io';
 import { Divider } from '@heroui/react';
+import AnimatedCursor from '@/components/ui/animated-cursor';
 
 const MotorCard = dynamic(() => import('@/components/pages/Home/Card/MotorCard'), { ssr: false });
 
@@ -20,6 +21,7 @@ const CatalogComponent = () => {
                 hoverBgColor="#ff4d30"
                 iconColor="text-[#ff4d30]"
             /> */}
+            <AnimatedCursor />
             <div className='flex items-center justify-center gap-2 w-full'>
                 <h1 className='text-subheader md:text-header font-semibold ml-4'>Pilihan Motor✨</h1>
             </div>
