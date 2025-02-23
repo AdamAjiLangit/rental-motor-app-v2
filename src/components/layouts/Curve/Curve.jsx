@@ -4,11 +4,10 @@ import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
 const routes = {
-    '/': 'Home',
-    '/about': 'About',
-    '/contact': 'Contact',
-    '/test': 'Test',
-    '/catalog': 'Catalog',
+    '/': 'Beranda',
+    '/tentang': 'Tentang',
+    '/kontak': 'Kontak',
+    '/katalog': 'Katalog',
 };
 
 const anim = (variants) => ({

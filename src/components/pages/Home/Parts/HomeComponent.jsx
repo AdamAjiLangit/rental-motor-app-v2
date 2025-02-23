@@ -19,7 +19,7 @@ const HomeComponent = () => {
                         <h1 className='text-subheader lg:text-header tracking-tight font-poppinsBold'>Sewa Motor <span className='text-primary'>Mudah</span> <br /> <span className='text-primary'>Cepat</span> di Mana Saja!🛵</h1>
                         <TextAnim text='Dapatkan motor pilihan dengan harga terjangkau, tanpa ribet!' textClass={"tracking-tight text-body lg:text-subheader"} />
                         <div className='mt-5'>
-                            <Button text='Sewa Sekarang' href="/catalog" customStyle="" />
+                            <Button text='Sewa Sekarang' href="/katalog" customStyle="" />
                         </div>
                     </div>
                     <div className='relative flex items-center justify-center max-w-52 lg:max-w-[600px]'>

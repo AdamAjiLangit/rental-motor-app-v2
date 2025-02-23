@@ -16,7 +16,7 @@ const Review = () => {
                 <ReviewCard />
                 <ReviewCard />
             </Marquee>
-            <Button text='Sewa Sekarang' href="/catalog" customStyle="" className="bg-white" />
+            <Button text='Sewa Sekarang' href="/katalog" customStyle="" className="bg-white" />
         </div>
     )
 }
