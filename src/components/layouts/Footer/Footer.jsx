@@ -21,7 +21,7 @@ const Footer = () => {
                 </div>
                 <div className='flex flex-col md:flex-row items-start md:items-center gap-1'>
                     <h4 className={`text-body font-semibold text-default-700 ${pathname === '/katalog' ? 'text-white' : ''}`}>Semua hak cipta dilindungi undang-undang.</h4>
-                    <Link href="/kebijakan" className={`text-body font-semibold text-primary ${pathname === '/katalog' ? 'text-white' : ''}`}>Syarat & Ketentuan ● Kebijakan Privasi</Link>
+                    <Link href="/kebijakan" className={`text-body font-semibold text-primary ${pathname === '/katalog' ? 'text-white underline' : ''}`}>Syarat & Ketentuan ● Kebijakan Privasi</Link>
                 </div>
             </div>
             <div className='fixed bottom-0 w-full p-10 mb-10 lg:mb-0 flex items-center gap-2'>
