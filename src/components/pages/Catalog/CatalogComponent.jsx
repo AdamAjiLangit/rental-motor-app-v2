@@ -57,9 +57,6 @@ const CatalogComponent = () => {
                     />
                 </div>
             </div>
-            <div className="block md:hidden w-full">
-                <SwiperCard />
-            </div>
         </section>
     )
 }

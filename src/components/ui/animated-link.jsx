@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
-const AnimatedLink = ({ href, text, customStyle }) => {
+const AnimatedLink = ({ href, text, customStyle, target }) => {
   return (
-    <Link href={href}>
+    <Link href={href} target={target}>
       <button className="cta">
         <span className={`hover-underline-animation ${customStyle}`}>{text}</span>
         {/* <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width={30} height={10} viewBox="0 0 46 16">
