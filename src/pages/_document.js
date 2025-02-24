@@ -30,19 +30,19 @@ export default function Document() {
         <link rel="canonical" href="https://yourwebsite.com" /> */}
 
         <title>Rental Motor | Sewa Motor Terbaik & Terpercaya</title>
-        <meta name="description" content="Sewa motor cepat dan mudah dengan harga terbaik di Indonesia." />
+        <meta name="description" content="Sewa motor cepat dan mudah dengan harga terbaik di Kudus." />
 
         <meta property="og:url" content="https://rentalmotorkudus.vercel.app/" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Rental Motor | Sewa Motor Terbaik & Terpercaya" />
-        <meta property="og:description" content="Sewa motor cepat dan mudah dengan harga terbaik di Indonesia." />
+        <meta property="og:description" content="Sewa motor cepat dan mudah dengan harga terbaik di Kudus." />
         <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/1057ab70-9c60-4bec-9d0c-7f9bfb5fcedf.png?token=3dGvTwu1K8VS6M6MY_q_4uKrRr_FPVUUgfIVotjeZd4&height=604&width=1200&expires=33276373810" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="rentalmotorkudus.vercel.app" />
         <meta property="twitter:url" content="https://rentalmotorkudus.vercel.app/" />
         <meta name="twitter:title" content="Rental Motor | Sewa Motor Terbaik & Terpercaya" />
-        <meta name="twitter:description" content="Sewa motor cepat dan mudah dengan harga terbaik di Indonesia." />
+        <meta name="twitter:description" content="Sewa motor cepat dan mudah dengan harga terbaik di Kudus." />
         <meta name="twitter:image" content="https://opengraph.b-cdn.net/production/images/1057ab70-9c60-4bec-9d0c-7f9bfb5fcedf.png?token=3dGvTwu1K8VS6M6MY_q_4uKrRr_FPVUUgfIVotjeZd4&height=604&width=1200&expires=33276373810" />
 
       </Head>
