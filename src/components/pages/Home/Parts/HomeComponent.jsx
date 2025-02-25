@@ -14,7 +14,7 @@ const HomeComponent = () => {
                 <AnimatedCursor />
             </div>
             <div className='text-second flex items-center justify-between h-screen'>
-                <div className='flex flex-col-reverse md:flex-row gap-10 h-[600px] w-screen p-10 rounded-2xl bg-[#F2EFE7] z-10'>
+                <div className='flex flex-col-reverse md:flex-row items-center justify-center gap-10 h-[600px] w-screen p-10 rounded-2xl bg-[#F2EFE7] z-10'>
                     <div className='flex flex-col gap-2 justify-center'>
                         <h1 className='text-subheader lg:text-header tracking-tight font-poppinsBold'>Sewa Motor <span className='text-primary'>Mudah</span> <br /> <span className='text-primary'>Cepat</span> di Mana Saja!🛵</h1>
                         <TextAnim text='Dapatkan motor pilihan dengan harga terjangkau, tanpa ribet!' textClass={"tracking-tight text-body lg:text-subheader"} />
