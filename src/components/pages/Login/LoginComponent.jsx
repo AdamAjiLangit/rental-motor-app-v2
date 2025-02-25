@@ -1,12 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@heroui/react';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
+import toast from 'react-hot-toast';
+
+const loginSchema = z.object({
+    email: z.string().email('Invalid email address'),
+    password: z.string().min(1, 'Password is required'),
+});
 
 const LoginComponent = () => {
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+    } = useForm({
+        resolver: zodResolver(loginSchema),
+    });
+
+    const onSubmit = (data) => {
+        try {
+            setLoading(true);
+            signIn('credentials', {
+                ...data,
+                redirect: false,
+            })
+                .then((callback) => {
+                    if (callback?.ok) {
+                        toast.success("Selamat, Anda berhasil login!");
+                        router.push("/");
+                    }
+
+                    if (callback?.error) {
+                        toast.error("Password atau email kurang tepat.");
+                    }
+                })
+                .catch((error) => {
+                    console.error('An error occurred during sign-in:', error);
+                    toast.error('An unexpected error occurred. Please try again later.');
+                });
+
+        } catch (error) {
+            console.error('Validation error:', error);
+            toast.error(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-[#F2EFE7] z-10">
-            <form className="flex flex-col gap-[10px] bg-white p-10 md:p-7 w-[450px] rounded-[20px]">
-                {/* Email Field */}
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-[10px] bg-white p-10 md:p-7 w-[450px] rounded-[20px]"
+            >
                 <div>
                     <label className="text-[#151717] font-semibold">Email</label>
                 </div>
@@ -22,17 +78,21 @@ const LoginComponent = () => {
                         </g>
                     </svg>
                     <input
-                        type="text"
-                        className="ml-[10px] rounded-[10px] border-0 w-[85%] h-full focus:outline-none placeholder:font-sans"
+                        type="email"
                         placeholder="Enter your Email"
+                        className="ml-[10px] rounded-[10px] border-0 w-[85%] h-full focus:outline-none placeholder:font-sans"
+                        {...register('email')}
+                        disabled={isSubmitting}
                     />
                 </div>
+                {errors.email && (
+                    <p className="text-red-500 text-[12px]">{errors.email.message}</p>
+                )}
 
-                {/* Password Field */}
                 <div>
                     <label className="text-[#151717] font-semibold">Password</label>
                 </div>
-                <div className="border-[1.5px] border-[#ecedec] rounded-[10px] h-[50px] flex items-center pl-[10px] transition duration-200 ease-in-out focus-within:border-[#2d79f3]">
+                <div className="relative border-[1.5px] border-[#ecedec] rounded-[10px] h-[50px] flex items-center pl-[10px] transition duration-200 ease-in-out focus-within:border-[#2d79f3]">
                     <svg
                         height={20}
                         viewBox="-64 0 512 512"
@@ -43,19 +103,35 @@ const LoginComponent = () => {
                         <path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0" />
                     </svg>
                     <input
-                        type="password"
-                        className="ml-[10px] rounded-[10px] border-0 w-[85%] h-full focus:outline-none"
+                        type={(showPassword ? 'text' : 'password')}
                         placeholder="Enter your Password"
+                        className="ml-[10px] rounded-[10px] border-0 w-[85%] h-full focus:outline-none"
+                        {...register('password')}
+                        disabled={isSubmitting}
                     />
-                    <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z" />
-                    </svg>
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        className="absolute right-2 top-[14px] focus:outline-none"
+                    >
+                        {showPassword ? (
+                            <IoEyeOutline className="h-5 w-5 text-gray" />
+                        ) : (
+                            <IoEyeOffOutline className="h-5 w-5 text-gray" />
+                        )}
+                    </button>
                 </div>
+                {errors.password && (
+                    <p className="text-red-500 text-[12px]">{errors.password.message}</p>
+                )}
 
-                {/* Remember me & Forgot password */}
                 <div className="flex flex-row items-center gap-[10px] justify-between">
                     <div className="flex items-center">
-                        <input type="checkbox" className="cursor-pointer" />
+                        <input
+                            type="checkbox"
+                            className="cursor-pointer"
+                            disabled={isSubmitting}
+                        />
                         <label className="text-[14px] text-black font-normal ml-[5px]">
                             Remember me
                         </label>
@@ -65,21 +141,22 @@ const LoginComponent = () => {
                     </span>
                 </div>
 
-                {/* Sign In Button */}
-                <Button className="mt-[20px] mb-[10px] bg-primary border-0 text-white text-[15px] font-medium rounded-[10px] h-[50px] w-full cursor-pointer hover:bg-[#252727]">
+                <Button
+                    type="submit"
+                    loading={loading}
+                    className="mt-[20px] mb-[10px] bg-primary border-0 text-white text-[15px] font-medium rounded-[10px] h-[50px] w-full cursor-pointer hover:bg-[#252727]"
+                >
                     Sign In
                 </Button>
 
-                {/* Sign Up & Or With */}
                 <p className="text-center text-black text-[14px] my-[5px]">
-                    Don't have an account?{" "}
+                    Don't have an account?{' '}
                     <Link href="/register" className="text-[#2d79f3] font-medium cursor-pointer">
                         Sign Up
                     </Link>
                 </p>
                 <p className="text-center text-black text-[14px] my-[5px]">Or With</p>
 
-                {/* Social Buttons */}
                 <div className="flex flex-row items-center gap-[10px] justify-between">
                     <button className="mt-[10px] w-full h-[50px] rounded-[10px] flex justify-center items-center font-medium gap-[10px] border border-[#ededef] bg-white cursor-pointer transition duration-200 ease-in-out hover:border-[#2d79f3]">
                         <svg
@@ -91,29 +168,29 @@ const LoginComponent = () => {
                             x="0px"
                             y="0px"
                             viewBox="0 0 512 512"
-                            style={{ enableBackground: "new 0 0 512 512" }}
+                            style={{ enableBackground: 'new 0 0 512 512' }}
                             xmlSpace="preserve"
                         >
                             <path
-                                style={{ fill: "#FBBB00" }}
+                                style={{ fill: '#FBBB00' }}
                                 d="M113.47,309.408L95.648,375.94l-65.139,1.378C11.042,341.211,0,299.9,0,256
                 c0-42.451,10.324-82.483,28.624-117.732h0.014l57.992,10.632l25.404,57.644c-5.317,15.501-8.215,32.141-8.215,49.456
                 C103.821,274.792,107.225,292.797,113.47,309.408z"
                             />
                             <path
-                                style={{ fill: "#518EF8" }}
+                                style={{ fill: '#518EF8' }}
                                 d="M507.527,208.176C510.467,223.662,512,239.655,512,256c0,18.328-1.927,36.206-5.598,53.451
                 c-12.462,58.683-45.025,109.925-90.134,146.187l-0.014-0.014l-73.044-3.727l-10.338-64.535
                 c29.932-17.554,53.324-45.025,65.646-77.911h-136.89V208.176h138.887L507.527,208.176L507.527,208.176z"
                             />
                             <path
-                                style={{ fill: "#28B446" }}
+                                style={{ fill: '#28B446' }}
                                 d="M416.253,455.624l0.014,0.014C372.396,490.901,316.666,512,256,512
                 c-97.491,0-182.252-54.491-225.491-134.681l82.961-67.91c21.619,57.698,77.278,98.771,142.53,98.771
                 c28.047,0,54.323-7.582,76.87-20.818L416.253,455.624z"
                             />
                             <path
-                                style={{ fill: "#F14336" }}
+                                style={{ fill: '#F14336' }}
                                 d="M419.404,58.936l-82.933,67.896c-23.335-14.586-50.919-23.012-80.471-23.012
                 c-66.729,0-123.429,42.957-143.965,102.724l-83.397-68.276h-0.014C71.23,56.123,157.06,0,256,0
                 C318.115,0,375.068,22.126,419.404,58.936z"
@@ -132,7 +209,7 @@ const LoginComponent = () => {
                             x="0px"
                             y="0px"
                             viewBox="0 0 22.773 22.773"
-                            style={{ enableBackground: "new 0 0 22.773 22.773" }}
+                            style={{ enableBackground: 'new 0 0 22.773 22.773' }}
                             xmlSpace="preserve"
                         >
                             <g>
