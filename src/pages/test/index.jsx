@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Curve from '@/components/layouts/Curve/Curve';
-import Navbar from '@/components/navbar/Navbar';
+import Navbar from '@/components/layouts/Navbar/Navbar';
 
 const Tes = () => {
     return (
