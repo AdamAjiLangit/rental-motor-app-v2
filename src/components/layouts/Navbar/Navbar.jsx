@@ -58,7 +58,7 @@ export default function Navbar() {
                     </Magnetic>
                 </Link>
                 <div className="md:flex hidden items-center">
-                    {['Beranda', 'Pesanan', 'Katalog', 'Tentang', 'Kontak'].map((item) => (
+                    {['Beranda', 'Katalog', 'Tentang', 'Kontak'].map((item) => (
                         <Magnetic key={item}>
                             <div
                                 className="relative z-10 p-[15px] cursor-pointer"

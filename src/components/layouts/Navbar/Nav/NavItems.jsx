@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { linkMenuSlide } from '@/components/anim/anim';
+import { FaWhatsapp } from 'react-icons/fa';
+import AnimatedLink from '@/components/ui/animated-link';
 import LinkNavbar from './Link';
 import Curve from './Curve';
 
@@ -9,10 +11,6 @@ const navItems = [
     {
         title: "Beranda",
         href: "/",
-    },
-    {
-        title: "Pesanan",
-        href: "/pesanan",
     },
     {
         title: "Katalog",
@@ -58,6 +56,13 @@ export default function NavItems() {
                             setSelectedIndicator={setSelectedIndicator}
                         />
                     ))}
+                </div>
+                <div className='flex flex-col gap-2 mt-5'>
+                    <h4>● Pertanyaan?</h4>
+                    <div className="flex items-center justify-start gap-2">
+                        <FaWhatsapp size="27" color="#25d366" />
+                        <AnimatedLink text="0812-2222-2222" href="https://wa.me/6281222222222" target="_blank" customStyle="text-[#25d366] font-poppinsMedium after:bg-[#25d366]" />
+                    </div>
                 </div>
             </div>
             <Curve />
