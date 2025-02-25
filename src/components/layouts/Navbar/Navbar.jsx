@@ -45,10 +45,10 @@ export default function Navbar() {
 
     return (
         <div>
-            <div ref={header} className="absolute flex z-[100] top-0 font-semibold p-[35px] text-primary justify-between w-full box-border items-center" id='header'>
+            <div ref={header} className="absolute flex z-[100] top-0 font-semibold p-[35px] text-primary justify-between w-full box-border items-start" id='header'>
                 <Link href="/">
                     <Magnetic>
-                        <div className="flex cursor-pointer absolute left-[9%]">
+                        <div className="flex cursor-pointer absolute left-[9%] top-[45px] md:top-[53px]">
                             <p className="m-0 transition-all duration-[0.5s] ease-[cubic-bezier(0.76,0,0.24,1)]">©</p>
                             <div className="relative overflow-hidden whitespace-nowrap ml-1 transition-all duration-[0.5s] ease-[cubic-bezier(0.76,0,0.24,1)]">
                                 <p className="relative transition-transform duration-[0.5s] ease-[cubic-bezier(0.76,0,0.24,1)]">Rental Motor Kudus</p>
@@ -73,7 +73,10 @@ export default function Navbar() {
                             </div>
                         </Magnetic>
                     ))}
-                    <SimpleButton text="Login" href="/login" />
+                    <SimpleButton text="Login" href="/login" customClass="ml-5 h-[60px] w-[120px]" />
+                </div>
+                <div className='md:hidden block'>
+                    <SimpleButton text="Login" href="/login" customClass="h-[40px] w-[100px]" />
                 </div>
                 <div ref={button} className="scale-0 fixed right-0 z-40">
                     <Rounded onClick={() => { setIsActive(!isActive) }} className="relative m-[20px] w-[80px] h-[80px] rounded-full bg-[#1C1D20] cursor-pointer flex items-center justify-center">
