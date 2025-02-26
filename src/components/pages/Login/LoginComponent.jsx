@@ -16,8 +16,8 @@ const loginSchema = z.object({
 
 const LoginComponent = () => {
     const router = useRouter();
-    const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
     const {
         register,
@@ -27,33 +27,25 @@ const LoginComponent = () => {
         resolver: zodResolver(loginSchema),
     });
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        if (submitted) return;
+
         try {
-            setLoading(true);
-            signIn('credentials', {
+            const result = await signIn('credentials', {
                 ...data,
                 redirect: false,
-            })
-                .then((callback) => {
-                    if (callback?.ok) {
-                        toast.success("Selamat, Anda berhasil login!");
-                        router.push("/");
-                    }
+            });
 
-                    if (callback?.error) {
-                        toast.error("Password atau email kurang tepat.");
-                    }
-                })
-                .catch((error) => {
-                    console.error('An error occurred during sign-in:', error);
-                    toast.error('An unexpected error occurred. Please try again later.');
-                });
-
+            if (result?.ok) {
+                toast.success("Selamat, Anda berhasil login!");
+                setSubmitted(true);
+                router.push("/");
+            } else if (result?.error) {
+                toast.error("Password atau email kurang tepat.");
+            }
         } catch (error) {
-            console.error('Validation error:', error);
-            toast.error(error.message);
-        } finally {
-            setLoading(false);
+            console.error('An error occurred during sign-in:', error);
+            toast.error('An unexpected error occurred. Please try again later.');
         }
     };
 
@@ -80,9 +72,9 @@ const LoginComponent = () => {
                     <input
                         type="email"
                         placeholder="Enter your Email"
-                        className="ml-[10px] rounded-[10px] border-0 w-[85%] h-full focus:outline-none placeholder:font-sans"
+                        className="ml-[10px] rounded-[10px] border-0 w-[85%] h-full focus:outline-none"
                         {...register('email')}
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || submitted}
                     />
                 </div>
                 {errors.email && (
@@ -103,11 +95,11 @@ const LoginComponent = () => {
                         <path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0" />
                     </svg>
                     <input
-                        type={(showPassword ? 'text' : 'password')}
+                        type={showPassword ? 'text' : 'password'}
                         placeholder="Enter your Password"
                         className="ml-[10px] rounded-[10px] border-0 w-[85%] h-full focus:outline-none"
                         {...register('password')}
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || submitted}
                     />
                     <button
                         type="button"
@@ -130,7 +122,7 @@ const LoginComponent = () => {
                         <input
                             type="checkbox"
                             className="cursor-pointer"
-                            disabled={isSubmitting}
+                            disabled={isSubmitting || submitted}
                         />
                         <label className="text-[14px] text-black font-normal ml-[5px]">
                             Remember me
@@ -143,7 +135,7 @@ const LoginComponent = () => {
 
                 <Button
                     type="submit"
-                    loading={loading}
+                    isLoading={isSubmitting}
                     className="mt-[20px] mb-[10px] bg-primary border-0 text-white text-[15px] font-medium rounded-[10px] h-[50px] w-full cursor-pointer hover:bg-[#252727]"
                 >
                     Sign In
@@ -188,12 +180,6 @@ const LoginComponent = () => {
                                 d="M416.253,455.624l0.014,0.014C372.396,490.901,316.666,512,256,512
                 c-97.491,0-182.252-54.491-225.491-134.681l82.961-67.91c21.619,57.698,77.278,98.771,142.53,98.771
                 c28.047,0,54.323-7.582,76.87-20.818L416.253,455.624z"
-                            />
-                            <path
-                                style={{ fill: '#F14336' }}
-                                d="M419.404,58.936l-82.933,67.896c-23.335-14.586-50.919-23.012-80.471-23.012
-                c-66.729,0-123.429,42.957-143.965,102.724l-83.397-68.276h-0.014C71.23,56.123,157.06,0,256,0
-                C318.115,0,375.068,22.126,419.404,58.936z"
                             />
                         </svg>
                         Google

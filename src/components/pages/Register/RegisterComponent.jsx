@@ -22,10 +22,12 @@ const RegisterComponent = () => {
     });
     const [submitError, setSubmitError] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const router = useRouter();
 
     const onSubmit = async (data) => {
+        setIsLoading(true);
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/register`, {
                 method: 'POST',
@@ -56,6 +58,8 @@ const RegisterComponent = () => {
             router.push('/');
         } catch (error) {
             setSubmitError(error.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -194,6 +198,7 @@ const RegisterComponent = () => {
                 {/* Submit Button */}
                 <Button
                     type="submit"
+                    isLoading={isLoading}
                     className="mt-[20px] mb-[10px] bg-primary border-0 text-white text-[15px] font-medium rounded-[10px] h-[50px] w-full cursor-pointer hover:bg-[#252727]"
                 >
                     Sign Up
