@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import { opacity } from '@/components/anim/anim';
 
 const routes = {
     '/': 'Beranda',
@@ -19,10 +20,10 @@ const anim = (variants) => ({
     exit: 'exit',
 });
 
-const text = {
+const textanim = {
     initial: { opacity: 1 },
     enter: { opacity: 0, top: -100, transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] }, transitionEnd: { top: "47.5%" } },
-    exit: { opacity: 1, top: "40%", transition: { duration: 0.5, delay: 0.4, ease: [0.33, 1, 0.68, 1] } }
+    exit: { opacity: 1, top: "40%", transition: { duration: 0.5, delay: 0.4, ease: [0.33, 1, 0.68, 1] }, }
 };
 
 const curve = (initialPath, targetPath) => ({
@@ -37,13 +38,14 @@ const translate = {
         top: "-100vh",
         opacity: 1,
         transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
-        transitionEnd: { top: "100vh", opacity: 0 } // Make opacity 0 after animation ends
+        transitionEnd: { top: "100vh", opacity: 0 }
     },
     exit: { top: "-300px", opacity: 1, transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] } }
 };
 
 export default function Curve({ children, backgroundColor }) {
     const pathname = usePathname();
+    const [visible, setVisible] = useState(true);
     const [dimensions, setDimensions] = useState({ width: null, height: null });
 
     useEffect(() => {
@@ -61,12 +63,13 @@ export default function Curve({ children, backgroundColor }) {
                 className="fixed w-full h-[calc(100vh+600px)] bg-black pointer-events-none transition-opacity duration-0 delay-100"
                 style={{ opacity: dimensions.width == null ? 1 : 0 }}
             />
-            <motion.p
+            {visible ? <motion.p
+                onAnimationComplete={() => setVisible(false)}
                 className="absolute left-1/2 top-[40%] z-[1000] transform -translate-x-1/2 text-center text-white text-4xl"
-                {...anim(text)}
+                {...anim(textanim)}
             >
                 {routes[pathname]}
-            </motion.p>
+            </motion.p> : null}
             {dimensions.width != null && <SVG {...dimensions} />}
             {children}
         </div>
