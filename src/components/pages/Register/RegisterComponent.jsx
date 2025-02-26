@@ -5,7 +5,7 @@ import Link from 'next/link';
 const RegisterComponent = () => {
     return (
         <div className="flex justify-center items-center min-h-screen bg-[#F2EFE7] z-10">
-            <form className="flex flex-col gap-[10px] bg-white p-10 md:p-7 w-[450px] rounded-[20px]">
+            <form className="flex flex-col gap-[10px] bg-white p-5 md:p-7 md:w-[450px] rounded-[20px]">
                 {/* Email Field */}
                 <div>
                     <label className="text-[#151717] font-semibold">Username</label>

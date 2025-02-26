@@ -61,7 +61,7 @@ const LoginComponent = () => {
         <div className="flex justify-center items-center min-h-screen bg-[#F2EFE7] z-10">
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col gap-[10px] bg-white p-10 md:p-7 w-[450px] rounded-[20px]"
+                className="flex flex-col gap-[10px] bg-white p-5 md:p-7 md:w-[450px] rounded-[20px]"
             >
                 <div>
                     <label className="text-[#151717] font-semibold">Email</label>
