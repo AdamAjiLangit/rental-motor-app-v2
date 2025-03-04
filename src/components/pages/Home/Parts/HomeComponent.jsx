@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Button from '@/components/ui/animated-button';
 import { useInView, motion } from 'framer-motion';
-import { Image } from '@heroui/react';
+import Image from 'next/image';
 import TextAnim from '../../../ui/animated-text';
 import AnimatedLink from '@/components/ui/animated-link';
 import StarAnimation from './StarsAnim';
@@ -28,6 +28,7 @@ const HomeComponent = () => {
                             className="m-5"
                             src="/assets/images/pcx.png"
                             width={600}
+                            height={500}
                             loading='lazy'
                         />
                         <StarAnimation x="5%" y="20%" delay={0} customStyle={"text-body md:text-header"} />

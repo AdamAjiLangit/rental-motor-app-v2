@@ -60,7 +60,7 @@ export default function Curve({ children, backgroundColor }) {
     return (
         <div className="relative h-screen z-[999]" style={{ backgroundColor }}>
             <div
-                className="fixed w-full h-[calc(100vh+600px)] bg-black pointer-events-none transition-opacity duration-0 delay-100"
+                className="fixed w-full bg-black pointer-events-none transition-opacity duration-0 delay-100"
                 style={{ opacity: dimensions.width == null ? 1 : 0 }}
             />
             {visible ? <motion.p
