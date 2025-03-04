@@ -1,13 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Button from '@/components/ui/animated-button';
+import { Skeleton } from '@heroui/react';
 import { useInView, motion } from 'framer-motion';
 import Image from 'next/image';
 import TextAnim from '../../../ui/animated-text';
 import AnimatedLink from '@/components/ui/animated-link';
-import StarAnimation from './StarsAnim';
-import AnimatedCursor from '@/components/ui/animated-cursor';
+
+const StarAnimation = dynamic(() => import('./StarsAnim'), { ssr: false });
+const AnimatedCursor = dynamic(() => import('@/components/ui/animated-cursor'), { ssr: false });
 
 const HomeComponent = () => {
+    const [isLoading, setIsLoading] = useState(true);
+
     return (
         <div className='min-h-screen home px-5 md:px-20'>
             <div className='hidden lg:block'>
@@ -23,13 +28,18 @@ const HomeComponent = () => {
                         </div>
                     </div>
                     <div className='relative flex items-center justify-center max-w-52 lg:max-w-[600px]'>
+                        {isLoading && (
+                            <Skeleton className="w-[600px] h-[500px] rounded-lg" />
+                        )}
+
                         <Image
                             alt="Rental Motor Kudus"
-                            className="m-5"
-                            src="/assets/images/pcx.png"
+                            className={`m-5 transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
+                            src="/assets/images/pcx.webp"
                             width={600}
                             height={500}
-                            loading='lazy'
+                            priority={true}
+                            onLoad={() => setIsLoading(false)}
                         />
                         <StarAnimation x="5%" y="20%" delay={0} customStyle={"text-body md:text-header"} />
                         <StarAnimation x="90%" y="75%" delay={0} customStyle={"text-subheader md:text-7xl"} />

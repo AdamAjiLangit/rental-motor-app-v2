@@ -4,7 +4,10 @@ import { AnimatePresence } from 'framer-motion';
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "react-hot-toast";
 import Providers from "@/components/Providers";
+import { Suspense } from "react";
 // import Layout from "@/components/Layout";
+
+const Loading = () => <div className="flex items-center justify-center h-screen">Loading...</div>;
 
 export default function App({ Component, pageProps, router }) {
   return (
@@ -15,9 +18,11 @@ export default function App({ Component, pageProps, router }) {
             position="top-center"
             reverseOrder={false}
           />
-          <AnimatePresence mode='wait'>
-            <Component key={router.route} {...pageProps} />
-          </AnimatePresence>
+          <Suspense fallback={<Loading />}>
+            <AnimatePresence mode="wait">
+              <Component key={router.route} {...pageProps} />
+            </AnimatePresence>
+          </Suspense>
           <Analytics />
         </div >
       </Providers>
