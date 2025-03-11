@@ -8,11 +8,11 @@ import Curve from "@/components/layouts/Curve/Curve";
 import { useSession } from "next-auth/react";
 import Loading from "../components/loading/loading";
 
-const HomeComponent = dynamic(() => import("@/components/pages/Home/Parts/HomeComponent"), { ssr: false });
+const HomeComponent = dynamic(() => import("@/components/pages/Home/Parts/HomeComponent"));
 const AboutUs = dynamic(() => import("@/components/pages/Home/Parts/AboutUs"), { ssr: false });
 const ListMotor = dynamic(() => import("@/components/pages/Home/Parts/ListMotor"), { ssr: false });
 const Review = dynamic(() => import("@/components/pages/Home/Parts/Review"), { ssr: false });
-const Navbar = dynamic(() => import("@/components/layouts/Navbar/Navbar"), { ssr: false });
+const Navbar = dynamic(() => import("@/components/layouts/Navbar/Navbar"));
 const NavbarAfter = dynamic(() => import("@/components/layouts/NavbarAfter/NavbarAfter"), { ssr: false });
 const Footer = dynamic(() => import("@/components/layouts/Footer/Footer"), { ssr: false });
 
@@ -29,7 +29,8 @@ export default function Home() {
     <HeroUIProvider>
       <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
         <Curve>
-          {session ? <NavbarAfter /> : <Navbar />}
+          {/* {session ? <NavbarAfter /> : <Navbar />} */}
+          <Navbar />
           <HomeComponent />
           <AboutUs />
           <ListMotor />

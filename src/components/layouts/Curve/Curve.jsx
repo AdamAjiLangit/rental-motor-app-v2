@@ -95,7 +95,7 @@ const SVG = ({ height, width }) => {
 
     return (
         <motion.svg
-            className="fixed w-full h-[calc(100vh+600px)] pointer-events-none left-0 top-0 z-[999]"
+            className="fixed w-full h-[calc(100vh+600px)] overflow-hidden pointer-events-none left-0 top-0 z-[999]"
             {...anim(translate)}
         >
             <motion.path {...anim(curve(initialPath, targetPath))} fill="#000" />

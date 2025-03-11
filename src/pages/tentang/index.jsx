@@ -18,7 +18,8 @@ const Tentang = () => {
     return (
         <ReactLenis root options={{ lerp: 0.1, duration: 1.5 }}>
             <Curve>
-                {session ? <NavbarAfter /> : <Navbar />}
+                {/* {session ? <NavbarAfter /> : <Navbar />} */}
+                <Navbar />
                 <AboutComponent />
                 <Footer />
             </Curve>
