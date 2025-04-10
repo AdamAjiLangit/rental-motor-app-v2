@@ -9,8 +9,8 @@ export default function NotFoundComponent() {
             <div class="text-white">
                 <div class="flex h-screen">
                     <div class="m-auto text-center">
-                        <div>
-                            <svg width="631" height="379" viewBox="0 0 631 379" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <div className='w-full flex items-center justify-center'>
+                            <svg width="631" height="379" className='w-[220px] h-[200px] md:w-[420px] md:h-[300px] lg:h-[379px] lg:w-[631px]' viewBox="0 0 631 379" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0)">
                                     <path
                                         d="M317.524 379C488.625 379 627.33 368.857 627.33 356.346C627.33 343.834 488.625 333.692 317.524 333.692C146.423 333.692 7.71875 343.834 7.71875 356.346C7.71875 368.857 146.423 379 317.524 379Z"

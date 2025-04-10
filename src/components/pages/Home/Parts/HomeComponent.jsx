@@ -5,7 +5,7 @@ import Image from 'next/image';
 import TextAnim from '../../../ui/animated-text';
 
 const StarAnimation = dynamic(() => import('./StarsAnim'), { ssr: false });
-const AnimatedCursor = dynamic(() => import('@/components/ui/animated-cursor'), { ssr: false });
+const AnimatedCursor = dynamic(() => import('@/components/ui/animated-cursor'));
 
 const HomeComponent = () => {
     return (

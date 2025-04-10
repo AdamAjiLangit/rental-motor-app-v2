@@ -1,9 +1,27 @@
-import React from 'react'
-import MotorCard from '../Card/MotorCard'
-import AnimatedLink from '@/components/ui/animated-link'
-import SwiperCard from '../Card/SwiperCard'
+"use client";
+
+import React, { useState, useEffect } from 'react';
+import MotorCard from '../Card/MotorCard';
+import AnimatedLink from '@/components/ui/animated-link';
+import SwiperCard from '../Card/SwiperCard';
+import { motorAPI } from '@/api/get';
 
 const ListMotor = () => {
+    const [motorList, setMotorList] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await motorAPI.get();
+                setMotorList(res.data.listMotor);
+                console.log(res.data.listMotor, 'listMotor');
+            } catch (error) {
+                console.error("Error fetching:", error);
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
         <section id='catalog' className="min-h-screen bg-[#F2EFE7] flex flex-col gap-10 py-10 items-center justify-center">
             <div className='flex flex-col items-center gap-2'>
@@ -11,32 +29,20 @@ const ListMotor = () => {
                 <AnimatedLink text="Lihat Selengkapnya" href="/katalog" customStyle="text-primary text-button after:bg-primary" />
             </div>
             <div className='hidden md:flex md:flex-row gap-10 justify-center items-center'>
-                <MotorCard
-                    image="https://rental-motor-kudus.vercel.app/_next/image?url=https%3A%2F%2Frental-motor.ruscarestudent.com%2Fstorage%2Fimages%2Fvespa_sprint.png&w=1080&q=75"
-                    title="Vespa Sprint"
-                    dailyPrice={250000}
-                    weeklyPrice={1500000}
-                    availability={true}
-                />
-                <MotorCard
-                    image="https://rental-motor-kudus.vercel.app/_next/image?url=https%3A%2F%2Frental-motor.ruscarestudent.com%2Fstorage%2Fimages%2Fvespa_sprint.png&w=1080&q=75"
-                    title="Vespa Sprint"
-                    dailyPrice={250000}
-                    weeklyPrice={1500000}
-                    availability={true}
-                />
-                <div className='hidden lg:block'>
+                {motorList.slice(3, 6).map((motor, index) => (
                     <MotorCard
-                        image="https://rental-motor-kudus.vercel.app/_next/image?url=https%3A%2F%2Frental-motor.ruscarestudent.com%2Fstorage%2Fimages%2Fvespa_sprint.png&w=1080&q=75"
-                        title="Vespa Sprint"
-                        dailyPrice={250000}
-                        weeklyPrice={1500000}
-                        availability={true}
+                        key={motor.id}
+                        id={motor.id}
+                        image={`${process.env.NEXT_PUBLIC_API_URL}/storage/${motor.gambar_motor}`}
+                        title={motor.nama_motor}
+                        dailyPrice={motor.harga_motor_per_1_hari}
+                        weeklyPrice={motor.harga_motor_per_1_minggu}
+                        availability={motor.status_motor}
                     />
-                </div>
+                ))}
             </div>
             <div className="block md:hidden w-full">
-                <SwiperCard />
+                <SwiperCard motors={motorList} />
             </div>
         </section>
     )
