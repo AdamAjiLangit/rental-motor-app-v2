@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardBody, CardFooter, Button } from "@heroui/react";
 import AnimatedLink from "@/components/ui/animated-link";
 
@@ -13,6 +14,8 @@ const MotorCard = ({
     onDetails,
 }) => {
     const cardRef = useRef(null);
+    const router = useRouter();
+    const [available, setAvailable] = useState(true);
 
     useEffect(() => {
         const card = cardRef.current;
@@ -30,10 +33,18 @@ const MotorCard = ({
         return () => card.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
+    const handlePress = (id) => {
+        if (availability === "Tidak Tersedia") {
+            setAvailable(false);
+        } else {
+            router.push(`/booking/${id}`);
+        }
+    }
+
     return (
         <Card
             ref={cardRef}
-            className="max-w-sm bg-white shadow-lg rounded-xl border-2 relative p-5 border-transparent z-[1]"
+            className="min-w-[350px] max-w-[350px] bg-white shadow-lg rounded-xl border-2 relative p-5 border-transparent z-[1]"
             style={{
                 backgroundImage: `linear-gradient(white, white), linear-gradient(calc(var(--rotation)), #ff4d30 0, #ff4d30 20%, transparent 80%)`,
                 backgroundOrigin: "border-box",
@@ -56,20 +67,21 @@ const MotorCard = ({
                     </div>
                 </div>
 
-                <p className={`font-semibold ${availability ? "text-green-600" : "text-red-500"}`}>
-                    {availability ? "Tersedia" : "Tidak Tersedia"}
+                <p className={`font-semibold ${availability === "Tersedia" ? "text-green-600" : "text-red-500"}`}>
+                    {availability}
                 </p>
             </CardBody>
 
             <CardFooter className="flex flex-col gap-2 text-center pb-4">
                 <Button
                     className="w-full bg-red-500 text-white px-5 py-2 rounded-lg font-semibold hover:bg-red-600 transition"
-                    onPress={onRent}
+                    onPress={() => handlePress(id)}
+                    isDisabled={!available}
                 >
                     Sewa Sekarang!
                 </Button>
 
-                <AnimatedLink text="Lihat Detail" href={`/booking/${id}`} customStyle="text-primary text-button after:bg-primary" />
+                <AnimatedLink text="Lihat Detail" href={`/detail/${id}`} customStyle="text-primary text-button after:bg-primary" />
             </CardFooter>
         </Card>
     );

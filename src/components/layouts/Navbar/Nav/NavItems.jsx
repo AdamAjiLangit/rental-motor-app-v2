@@ -17,12 +17,12 @@ const navItems = [
         href: "/katalog",
     },
     {
-        title: "Kontak",
-        href: "/kontak",
-    },
-    {
         title: "Tentang",
         href: "/tentang",
+    },
+    {
+        title: "Kontak",
+        href: "/kontak",
     },
 ]
 

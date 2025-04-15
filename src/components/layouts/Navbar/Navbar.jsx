@@ -73,11 +73,11 @@ export default function Navbar() {
                             </div>
                         </Magnetic>
                     ))}
-                    <SimpleButton text="Login" href="/login" customClass="ml-5 h-[60px] w-[120px]" />
+                    {/* <SimpleButton text="Login" href="/login" customClass="ml-5 h-[60px] w-[120px]" /> */}
                 </div>
-                <div className='md:hidden block'>
+                {/* <div className='md:hidden block'>
                     <SimpleButton text="Login" href="/login" customClass="h-[40px] w-[100px]" />
-                </div>
+                </div> */}
                 <div ref={button} className="scale-0 fixed right-0 z-40">
                     <Rounded onClick={() => { setIsActive(!isActive) }} className="relative m-[20px] w-[80px] h-[80px] rounded-full bg-[#1C1D20] cursor-pointer flex items-center justify-center">
                         <div className={`w-full relative z-10 transition-transform duration-[0.3s] ${isActive ? 'rotate-[45deg] top-[-1px]' : ''}`}>
