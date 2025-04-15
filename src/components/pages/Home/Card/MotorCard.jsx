@@ -44,7 +44,7 @@ const MotorCard = ({
     return (
         <Card
             ref={cardRef}
-            className="max-w-sm bg-white shadow-lg rounded-xl border-2 relative p-5 border-transparent z-[1]"
+            className="min-w-[350px] max-w-[350px] bg-white shadow-lg rounded-xl border-2 relative p-5 border-transparent z-[1]"
             style={{
                 backgroundImage: `linear-gradient(white, white), linear-gradient(calc(var(--rotation)), #ff4d30 0, #ff4d30 20%, transparent 80%)`,
                 backgroundOrigin: "border-box",
