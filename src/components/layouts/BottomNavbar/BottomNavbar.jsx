@@ -9,7 +9,7 @@ const BottomNavbar = () => {
     const pathname = usePathname();
     return (
         <div className="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600 px-3">
-            <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
+            <div className="flex items-center h-full max-w-lg mx-5 justify-between">
                 {/* Beranda */}
                 <Tooltip content="Beranda">
                     <Link
@@ -40,7 +40,7 @@ const BottomNavbar = () => {
                 </div>
 
                 {/* Pesanan */}
-                <Tooltip content="Pesanan">
+                {/* <Tooltip content="Pesanan">
                     <Link
                         href="/pesanan"
                         data-tooltip-target="tooltip-wallet"
@@ -67,7 +67,7 @@ const BottomNavbar = () => {
                 >
                     Pesanan
                     <div className="tooltip-arrow" data-popper-arrow></div>
-                </div>
+                </div> */}
 
                 {/* Katalog */}
                 <Tooltip content="Katalog">

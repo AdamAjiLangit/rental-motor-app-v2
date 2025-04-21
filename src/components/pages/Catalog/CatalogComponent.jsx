@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
@@ -31,7 +31,7 @@ const CatalogComponent = () => {
     }, []);
 
     return (
-        <section id='catalog' className="min-h-screen bg-[#F2EFE7] flex flex-col gap-10 py-10 pt-32 px-5 md:px-20 items-center justify-center">
+        <section id='catalog' className="bg-[#F2EFE7] flex flex-col gap-10 py-10 pt-32 px-5 md:px-20 items-center justify-center">
             {/* <AnimatedCircleLink
                 href="#catalog"
                 icon={IoMdArrowDown}
