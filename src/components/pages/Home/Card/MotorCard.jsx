@@ -37,7 +37,7 @@ const MotorCard = ({
         if (availability === "Tidak Tersedia") {
             setAvailable(false);
         } else {
-            router.push(`/booking/${id}`);
+            router.push(`/detail/${id}`);
         }
     }
 

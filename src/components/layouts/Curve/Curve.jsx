@@ -11,6 +11,7 @@ const routes = {
     '/katalog': 'Katalog',
     '/login': 'Login',
     '/register': 'Register',
+    '/detail/[id]': 'Detail',
 };
 
 const anim = (variants) => ({
