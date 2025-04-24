@@ -2,7 +2,7 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-kimport { ReactLenis } from "lenis/react";
+import { ReactLenis } from "lenis/react";
 
 const ContactComponent = dynamic(() => import('@/components/pages/Contact/ContactComponent'));
 const Navbar = dynamic(() => import('@/components/layouts/Navbar/Navbar'));
