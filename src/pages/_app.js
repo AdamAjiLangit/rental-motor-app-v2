@@ -12,7 +12,7 @@ const Loading = () => <div className="flex items-center justify-center h-screen"
 export default function App({ Component, pageProps, router }) {
   return (
     <>
-      <Providers>
+      {/* <Providers> */}
         <div className='main'>
           <Toaster
             position="top-center"
@@ -25,7 +25,7 @@ export default function App({ Component, pageProps, router }) {
           </Suspense>
           <Analytics />
         </div >
-      </Providers>
+      {/* </Providers> */}
     </>
   ); ``
 }
