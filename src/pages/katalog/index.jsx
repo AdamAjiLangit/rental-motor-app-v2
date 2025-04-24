@@ -3,7 +3,6 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { ReactLenis } from "lenis/react";
-import { useSession } from "next-auth/react";
 
 const CatalogComponent = dynamic(() => import('@/components/pages/Catalog/CatalogComponent'));
 const Navbar = dynamic(() => import('@/components/layouts/Navbar/Navbar'));
@@ -14,7 +13,6 @@ import Curve from '@/components/layouts/Curve/Curve';
 import Button from '@/components/ui/animated-button';
 
 const Katalog = () => {
-    const { data: session } = useSession();
     return (
         <ReactLenis root options={{ lerp: 0.1, duration: 1.5 }}>
             <Curve>

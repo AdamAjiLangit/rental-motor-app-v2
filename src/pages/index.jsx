@@ -17,13 +17,13 @@ const NavbarAfter = dynamic(() => import("@/components/layouts/NavbarAfter/Navba
 const Footer = dynamic(() => import("@/components/layouts/Footer/Footer"), { ssr: false });
 
 export default function Home() {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
-  useEffect(() => {
-    if (session) {
-      console.log('session', session);
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     console.log('session', session);
+  //   }
+  // }, [session]);
 
   return (
     <HeroUIProvider>

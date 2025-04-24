@@ -2,7 +2,6 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { useSession } from "next-auth/react";
 import { ReactLenis } from "lenis/react";
 
 const ContactComponent = dynamic(() => import('@/components/pages/Contact/ContactComponent'));
@@ -14,7 +13,6 @@ import Curve from '@/components/layouts/Curve/Curve';
 import Button from '@/components/ui/animated-button';
 
 const Kontak = () => {
-    const { data: session } = useSession();
     return (
         <ReactLenis root options={{ lerp: 0.1, duration: 1.5 }}>
             <Curve>
